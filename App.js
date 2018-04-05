@@ -30,7 +30,10 @@ export default class App extends React.Component {
                     }
                 }, {
                     tabBarPosition: "bottom",
+                    swipeEnabled: false,
                     tabBarOptions: {
+                        showIcon: true,
+                        labelStyle: { fontSize: 12 },
                         indicatorStyle: {
                             backgroundColor: "blue"
                         }

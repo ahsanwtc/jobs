@@ -2,7 +2,9 @@ import axios from 'axios';
 import qs from 'qs';
 
 import {
-    FETCH_JOBS
+    FETCH_JOBS,
+    LIKE_JOB,
+    CLEAR_LIKED_JOBS
 } from './types';
 
 const JOB_QUERY_PARAMS = {
@@ -66,4 +68,15 @@ export const fetchJobs = (region, callback) => async dispatch => {
     }    
 
 };
+
+export const likeJob = job => {
+    return {
+        payload: job,
+        type: LIKE_JOB
+    };
+};
+
+export const clearLikedJobs = () => {
+    return { type: CLEAR_LIKED_JOBS };
+}
 
