@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Notifications } from 'expo';
+import { StyleSheet, Text, View, Platform, Alert } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
@@ -12,7 +13,26 @@ import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
+import registerForNotifications from './services/push-notifications';
+
 export default class App extends React.Component {
+
+    componentDidMount() {
+        registerForNotifications();
+        Notifications.addListener(notification => {
+            console.log(notification);
+            const { data: { text }, origin } = notification;
+
+
+            if (origin === 'received' && text) {
+                Alert.alert(
+                    'New Push Notification',
+                    text: data,
+                    [{ text: 'OK' }]
+                );
+            }            
+        });
+    }
       
     render() {
         const MainNavigator = new TabNavigator({
