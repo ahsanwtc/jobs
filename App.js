@@ -27,7 +27,7 @@ export default class App extends React.Component {
             if (origin === 'received' && text) {
                 Alert.alert(
                     'New Push Notification',
-                    text: data,
+                    text,
                     [{ text: 'OK' }]
                 );
             }            
